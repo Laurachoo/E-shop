@@ -1,4 +1,4 @@
-import RegisterStyle from './components/addShop/Register.module.css';
+import RegisterStyle from '../register/Register.module.css';
 
 function Register() {
   return (
