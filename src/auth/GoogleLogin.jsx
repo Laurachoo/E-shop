@@ -10,7 +10,7 @@ export default function GoogleLogin() {
 
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        navigate('/', { replace: true });
+        navigate('/shops', { replace: true });
       })
       .catch((error) => {
         console.warn('error ===', error);

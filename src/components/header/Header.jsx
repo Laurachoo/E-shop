@@ -29,44 +29,6 @@ function logoutFire() {
       console.log('error ===', error);
     });
 }
-//   return (
-//     <div>
-//       <nav className={HeaderStyle.headerNavBar}>
-//         <div>
-//           <span className={HeaderStyle.headerTitle}>
-//             ShopExpress
-//             <FaDiceD20 />
-//           </span>
-//         </div>
-//         <div>
-//           <a className={HeaderStyle.headerLink} href='/shops'>
-//             Shops
-//           </a>
-//           {ctx.isUserLoggedIn ? (
-//             <a className={HeaderStyle.headerLink} href='/addshop'>
-//               Add Shop
-//             </a>
-//           ) : null}
-//           {!ctx.isUserLoggedIn ? (
-//             <>
-//               <a className={HeaderStyle.headerLink} href='/register'>
-//                 Register
-//               </a>
-
-//               <a className={HeaderStyle.headerLink} href='/login'>
-//                 Login
-//               </a>
-//             </>
-//           ) : (
-//             <a className={HeaderStyle.headerLink} onClick={logoutFire}>
-//               Logout
-//             </a>
-//           )}
-//         </div>
-//       </nav>
-//     </div>
-//   );
-// }
 function Header() {
   // atvaizduoti prisijungusio userio email is conteksto
   const ctx = useAuth();
@@ -82,9 +44,10 @@ function Header() {
             </span>
           </div>
         </Link>
-        <OneLink to={'/shops'} title={'Shops'} />
         {ctx.isUserLoggedIn && (
           <>
+            <OneLink to={'/shops'} title={'Shops'} />
+
             <OneLink to={'/addshop'} title={'Create Shop'} />
           </>
         )}

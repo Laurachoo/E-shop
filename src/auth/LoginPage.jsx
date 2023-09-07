@@ -31,7 +31,7 @@ export default function LoginForm() {
         // ...
         console.log('user login ok ===', user);
 
-        navigate('/', { replace: true });
+        navigate('/shops', { replace: true });
       })
       .catch((error) => {
         toast.error('Login failed, check email or password');

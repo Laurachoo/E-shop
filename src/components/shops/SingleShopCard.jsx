@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../store/AuthProvider';
 
-export default function SingleAddCard(props) {
+export default function SingleShopCard(props) {
   const ctx = useAuth();
   const { id, title, price, userUid, stock } = props.item;
 
@@ -19,7 +19,7 @@ export default function SingleAddCard(props) {
       <p>userUid: {userUid}</p>
       <Link
         className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-slate-600 text-white'
-        to={`/adds/${id}`}
+        to={`/shops/${id}`}
       >
         Read more
       </Link>

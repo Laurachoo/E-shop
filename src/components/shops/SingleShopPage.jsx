@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from './../firebase/firebase';
-import SingleAddCard from '../components/adds/SingleAddCard';
+import { db } from '../../firebase/firebase';
+import SingleShopCard from './SingleShopCard';
 
-export default function SingleAddPage() {
+export default function SingleShopPage() {
   const params = useParams();
   console.log('params ===', params);
   const [currentAddObj, setCurrentAddObj] = useState({});
@@ -14,7 +14,8 @@ export default function SingleAddPage() {
     console.log('pasileido effectas');
 
     async function getSingleDocumentFromFirebase() {
-      const docRef = doc(db, 'skelbimai', params.addId);
+      console.log(params);
+      const docRef = doc(db, 'shops', params.shopId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -39,7 +40,7 @@ export default function SingleAddPage() {
         Post title: {currentAddObj.title}
       </h2>
       <p>price: {currentAddObj.price?.toFixed(2)} eur</p>
-      <SingleAddCard item={currentAddObj} noDelete />
+      <SingleShopCard item={currentAddObj} noDelete />
     </div>
   );
 }

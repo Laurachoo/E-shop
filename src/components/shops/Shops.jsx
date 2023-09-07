@@ -62,9 +62,12 @@ export default function Shops() {
   return (
     <div className='container'>
       <h1 className='text-3xl mb-4 pt-4'>MyAccountPage</h1>
-      <p>your adds here</p>
-
-      <AddCardList list={addsArr} onDelete={deleteFire} />
+      <p>All the single laddies</p>
+      {addsArr.length != 0 ? (
+        <AddCardList list={addsArr} onDelete={deleteFire} />
+      ) : (
+        <p>No shops in the list</p>
+      )}
     </div>
   );
 }
