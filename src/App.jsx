@@ -17,15 +17,27 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Shops />} />
-        <Route path='/shops' element={<Shops />} />
+        {/* <Route path='/adds/:addId' element={<SingleAddPage />} /> */}
+        <Route path='/addshop' element={<AddShop />} />
         <Route
-          path='/addShop'
+          path='/shops'
+          element={ctx.isUserLoggedIn ? <Shops /> : <Navigate to={'/login'} />}
+        />
+        <Route path='/shops/:shopId' element={<SingleShopPage />} />
+        {/* pasiekiamas tik neprisijugusiems */}
+        {!ctx.isUserLoggedIn && <Route path='/login' element={<Login />} />}
+        {!ctx.isUserLoggedIn && (
+          <Route path='/register' element={<Register />} />
+        )}
+        <Route
+          path='*'
           element={
-            ctx.isUserLoggedIn ? <AddShop /> : <Navigate to={'/login'} />
+            <div>
+              <h1>404</h1>
+              <p>page not found</p>
+            </div>
           }
-        ></Route>
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+        />
       </Routes>
     </div>
   );

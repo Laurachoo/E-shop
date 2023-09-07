@@ -7,6 +7,7 @@ export default function GoogleLogin() {
   const navigate = useNavigate();
   function authWithGoogle() {
     const auth = getAuth();
+
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         navigate('/', { replace: true });
@@ -27,7 +28,7 @@ export default function GoogleLogin() {
 
   return (
     <>
-      <h3>Login with Google</h3>
+      <h3>(Register/Login) with Google</h3>
       <button onClick={authWithGoogle}>
         <FcGoogle size={35} />
       </button>

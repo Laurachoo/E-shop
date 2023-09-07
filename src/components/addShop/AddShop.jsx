@@ -1,13 +1,15 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useAuth } from '../../store/AuthProvider';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import toast from 'react-hot-toast';
 import AddShopStyle from '../addShop/AddShop.module.css';
+import { useAuth } from '../../store/AuthProvider';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 function CreateAdd() {
   const ctx = useAuth();
+  const navigate = useNavigate();
   const initialValues = {
     title: 'iPhone 9',
     description: 'An apple mobile which is nothing like apple',
@@ -55,9 +57,11 @@ function CreateAdd() {
   async function sendDataToFireBase(dataToSend) {
     console.log('creating');
     try {
-      const docRef = await addDoc(collection(db, 'skelbimai'), dataToSend);
+      const docRef = await addDoc(collection(db, 'shops'), dataToSend);
       console.log('Document written with ID: ', docRef.id);
+
       toast.success('Add created');
+      navigate('/shops', { replace: true });
     } catch (error) {
       console.error('Error adding document: ', error);
       toast.error('something went wrong');
