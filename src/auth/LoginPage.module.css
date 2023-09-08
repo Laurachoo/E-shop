@@ -1,0 +1,15 @@
+.input {
+  background-color: white;
+  border: 1px solid #282828;
+  margin-bottom: 25px;
+  padding: 10px;
+}
+
+.loginButton {
+  padding: 10px 40px;
+  border-radius: 25px;
+  background-color: #eb8e8e;
+  color: #f7f2e8;
+  font-size: 20px;
+  border: none;
+}

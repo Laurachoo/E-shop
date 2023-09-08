@@ -1,0 +1,9 @@
+.container {
+  margin: auto;
+  text-align: center;
+  width: fit-content;
+}
+
+.loginTitle {
+  color: #3c0e0e;
+}

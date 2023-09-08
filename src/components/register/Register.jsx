@@ -4,8 +4,10 @@ import GoogleLogin from '../../auth/GoogleLogin';
 
 function Register() {
   return (
-    <div>
-      <h1>Register with email and password</h1>
+    <div className={RegisterStyle.container}>
+      <h1 className={RegisterStyle.registerTitle}>
+        Register with email and password
+      </h1>
       <RegisterForm />
       <GoogleLogin />
     </div>

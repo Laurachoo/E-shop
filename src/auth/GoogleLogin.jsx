@@ -2,6 +2,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { googleProvider } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import GoogleLoginStyle from '../auth/GoogleLogin.module.css';
 
 export default function GoogleLogin() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function GoogleLogin() {
 
   return (
     <>
-      <h3>Login or register with Google</h3>
+      <h3 className={GoogleLoginStyle.title}>Login or register with Google</h3>
       <button onClick={authWithGoogle}>
         <FcGoogle size={35} />
       </button>
