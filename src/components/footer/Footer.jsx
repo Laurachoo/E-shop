@@ -1,7 +1,7 @@
-import FooterStyle from '../footer/Footer.module.css';
 import { FaMailBulk } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa';
 import { FaInstagramSquare } from 'react-icons/fa';
+import FooterStyle from '../footer/Footer.module.css';
 
 function Footer() {
   return (

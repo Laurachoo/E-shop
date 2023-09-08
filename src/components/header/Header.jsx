@@ -1,9 +1,9 @@
-import HeaderStyle from '../header/Header.module.css';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../store/AuthProvider';
 import { getAuth, signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import { FaBity } from 'react-icons/fa';
+import HeaderStyle from '../header/Header.module.css';
 
 function OneLink(props) {
   return (

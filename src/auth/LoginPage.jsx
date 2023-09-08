@@ -1,9 +1,17 @@
-import { useFormik } from 'formik';
+import { ErrorMessage, useFormik } from 'formik';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import LoginPageStyle from '../auth/LoginPage.module.css';
+
+const validationSchema = Yup.object({
+  email: Yup.string().email('Email must be valid').required(),
+  password: Yup.string()
+    .min(5, 'Password must be at least 5 characters')
+    .max(50)
+    .required(),
+});
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -12,10 +20,7 @@ export default function LoginForm() {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({
-      email: Yup.string().email().required(),
-      password: Yup.string().min(5).max(50).required(),
-    }),
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       loginWithFire(values.email, values.password);
     },
@@ -28,7 +33,8 @@ export default function LoginForm() {
         toast.success('Welcome');
         navigate('/shops', { replace: true });
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log('aaa');
         toast.error('Login failed');
       });
   }
@@ -38,7 +44,7 @@ export default function LoginForm() {
       <form onSubmit={formik.handleSubmit}>
         <div>
           <input
-            className={LoginPageStyle.input}
+            className={LoginPageStyle.inputOne}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
@@ -46,10 +52,13 @@ export default function LoginForm() {
             id='email'
             placeholder='Email'
           />
+          {formik.touched.email && formik.errors.email && (
+            <div className={LoginPageStyle.error}>{formik.errors.email}</div>
+          )}
         </div>
-        <div>
+        <div className={LoginPageStyle.passwordInput}>
           <input
-            className={LoginPageStyle.input}
+            className={LoginPageStyle.inputTwo}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
@@ -57,6 +66,9 @@ export default function LoginForm() {
             id='password'
             placeholder='Password'
           />
+          {formik.touched.password && formik.errors.password && (
+            <div className={LoginPageStyle.error}>{formik.errors.password}</div>
+          )}
         </div>
         <button className={LoginPageStyle.loginButton} type='submit'>
           Login

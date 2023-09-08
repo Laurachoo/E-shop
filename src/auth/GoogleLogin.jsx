@@ -2,6 +2,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { googleProvider } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import GoogleLoginStyle from '../auth/GoogleLogin.module.css';
 
 export default function GoogleLogin() {
@@ -11,6 +12,7 @@ export default function GoogleLogin() {
 
     signInWithPopup(auth, googleProvider)
       .then((result) => {
+        toast.success('Welcome');
         navigate('/shops', { replace: true });
       })
       .catch((error) => {

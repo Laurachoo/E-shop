@@ -1,6 +1,6 @@
-import RegisterStyle from '../register/Register.module.css';
 import RegisterForm from '../../auth/RegisterPage';
 import GoogleLogin from '../../auth/GoogleLogin';
+import RegisterStyle from '../register/Register.module.css';
 
 function Register() {
   return (
