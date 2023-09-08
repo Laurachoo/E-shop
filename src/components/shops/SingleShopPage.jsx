@@ -14,8 +14,7 @@ export default function SingleShopPage() {
     console.log('pasileido effectas');
 
     async function getSingleDocumentFromFirebase() {
-      console.log(params);
-      const docRef = doc(db, 'shops', params.shopId);
+      const docRef = doc(db, 'skelbimai', params.addId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {

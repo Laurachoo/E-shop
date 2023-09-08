@@ -14,21 +14,16 @@ export default function GoogleLogin() {
       })
       .catch((error) => {
         console.warn('error ===', error);
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.customData.email;
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log('credential ===', credential);
-        // ...
       });
   }
 
   return (
     <>
-      <h3>(Register/Login) with Google</h3>
+      <h3>Login or register with Google</h3>
       <button onClick={authWithGoogle}>
         <FcGoogle size={35} />
       </button>

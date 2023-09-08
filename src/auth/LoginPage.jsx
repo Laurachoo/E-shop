@@ -8,8 +8,8 @@ export default function LoginForm() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      email: 'james@bond.com',
-      password: '123456',
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),

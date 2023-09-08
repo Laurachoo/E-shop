@@ -4,9 +4,7 @@ import { useAuth } from '../../store/AuthProvider';
 export default function SingleShopCard(props) {
   const ctx = useAuth();
   const { id, title, price, userUid, stock } = props.item;
-
   const isMine = userUid === ctx.userUid ? true : false;
-
   return (
     <li
       className={`border-[1px] px-4 py-3 inline-block ${
