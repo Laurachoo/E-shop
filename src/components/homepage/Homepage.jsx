@@ -4,8 +4,12 @@ import LoginForm from '../../auth/LoginPage';
 
 function Homepage() {
   return (
-    <div>
-      <h1>This is the homepage</h1>
+    <div className={HomepageStyle.heroSection}>
+      <h3 className={HomepageStyle.heroTitleStart}>Welcome to</h3>
+      <h1 className={HomepageStyle.heroTitleEnd}>Sound Spectrum</h1>
+      <p className={HomepageStyle.heroDescription}>
+        A place to browse thousands of music stores.
+      </p>
     </div>
   );
 }

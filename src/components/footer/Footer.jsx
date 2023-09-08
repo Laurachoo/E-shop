@@ -13,7 +13,7 @@ function Footer() {
             <FaMailBulk />
           </span>
           <span className={FooterStyle.containerDescription}>
-            support@shopexpress.com
+            support@soundspectrum.com
           </span>
         </div>
         <div className={FooterStyle.footerContact}>
@@ -28,18 +28,20 @@ function Footer() {
           <span className={FooterStyle.footerIcon}>
             <FaInstagramSquare />
           </span>
-          <span className={FooterStyle.containerDescription}>ShopExpress</span>
+          <span className={FooterStyle.containerDescription}>
+            Sound Spectrum
+          </span>
         </div>
       </div>
       <div className={FooterStyle.informationContainer}>
         <span className={FooterStyle.containerDescription}>
-          <b>© All rights reserved by ShopExpress</b>
+          <b>© All rights reserved</b>
         </span>
       </div>
       <div className={FooterStyle.locationContainer}>
         <span className={FooterStyle.containerTitle}>Location</span>
         <span className={FooterStyle.containerDescription}>
-          ShopExpress Inc.
+          Sound Spectrum Inc.
           <br />
           2347 Hamilton Avenue San Jose,
           <br />

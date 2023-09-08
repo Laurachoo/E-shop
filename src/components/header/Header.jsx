@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../store/AuthProvider';
 import { getAuth, signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
+import { FaBity } from 'react-icons/fa';
 
 function OneLink(props) {
   return (
@@ -34,8 +35,10 @@ function Header() {
       <nav className={HeaderStyle.headerNavBar}>
         <Link className={HeaderStyle.headerTitleLink} to={'/'}>
           <div className={HeaderStyle.headerIconAndTitle}>
-            <img src='../public/logo.png' alt='Logo' />
-            <span className={HeaderStyle.headerTitle}>ShopExpress</span>
+            <span className={HeaderStyle.headerIcon}>
+              <FaBity size={'50px'} />
+            </span>
+            <span className={HeaderStyle.headerTitle}>Sound Spectrum</span>
           </div>
         </Link>
         <div className={HeaderStyle.headerLinks}>

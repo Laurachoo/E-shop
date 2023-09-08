@@ -46,9 +46,6 @@ export default function LoginForm() {
             id='email'
             placeholder='Email'
           />
-          {formik.errors.email && formik.touched.email && (
-            <p>{formik.errors.email}</p>
-          )}
         </div>
         <div>
           <input
@@ -60,9 +57,6 @@ export default function LoginForm() {
             id='password'
             placeholder='Password'
           />
-          {formik.errors.password && formik.touched.password && (
-            <p>{formik.errors.password}</p>
-          )}
         </div>
         <button className={LoginPageStyle.loginButton} type='submit'>
           Login

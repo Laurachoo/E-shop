@@ -1,0 +1,26 @@
+.heroSection {
+  background-image: url(/public/hero.jpg);
+  background-size: cover;
+  text-align: center;
+}
+
+.heroTitleStart {
+  font-size: 25px;
+  color: #f7f2e8;
+  margin: 0px;
+  padding-top: 50px;
+}
+
+.heroTitleEnd {
+  font-size: 80px;
+  color: #f7f2e8;
+  margin: 0px;
+  padding-bottom: 75px;
+}
+
+.heroDescription {
+  font-size: 15px;
+  color: #f7f2e8;
+  margin: 0px;
+  padding-bottom: 250px;
+}
