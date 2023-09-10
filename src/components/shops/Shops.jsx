@@ -11,6 +11,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import ShopsStyle from '../shops/shops.module.css';
 
 export default function Shops() {
   const ctx = useAuth();
@@ -20,10 +21,7 @@ export default function Shops() {
   }, []);
 
   async function getShops() {
-    const q = query(
-      collection(db, 'shops'),
-      where('userUid', '==', ctx.userUid)
-    );
+    const q = query(collection(db, 'shops'));
 
     const querySnapshot = await getDocs(q);
     const dataBack = [];
@@ -33,6 +31,7 @@ export default function Shops() {
         ...doc.data(),
       });
     });
+    console.log(dataBack);
     setAddsArr(dataBack);
   }
 
@@ -50,11 +49,11 @@ export default function Shops() {
 
   return (
     <div>
-      <h1>Browse all the shops</h1>
+      <h1 className={ShopsStyle.browseShops}>Browse all the shops</h1>
       {addsArr.length != 0 ? (
         <AddCardList list={addsArr} onDelete={deleteFire} />
       ) : (
-        <p>No shops in the list</p>
+        <p className={ShopsStyle.noShops}>No shops in the list</p>
       )}
     </div>
   );

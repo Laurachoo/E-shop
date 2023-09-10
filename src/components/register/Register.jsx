@@ -4,12 +4,14 @@ import RegisterStyle from '../register/Register.module.css';
 
 function Register() {
   return (
-    <div className={RegisterStyle.container}>
-      <h1 className={RegisterStyle.registerTitle}>
-        Register with email and password
-      </h1>
-      <RegisterForm />
-      <GoogleLogin />
+    <div className='container'>
+      <div className={RegisterStyle.container}>
+        <h1 className={RegisterStyle.registerTitle}>
+          Register with email and password
+        </h1>
+        <RegisterForm />
+        <GoogleLogin />
+      </div>
     </div>
   );
 }

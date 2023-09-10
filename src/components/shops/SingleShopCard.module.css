@@ -1,0 +1,67 @@
+.articleElement {
+  list-style-type: none;
+  color: #f7f2e8;
+  text-align: center;
+  border: 5px solid #f7f2e8;
+  border-radius: 25px;
+  overflow: hidden;
+  width: 70%;
+  margin: 0px auto 50px auto;
+}
+
+.shopImage {
+  width: 250px;
+  height: 250px;
+}
+
+.shopName {
+  font-size: 25px;
+  margin: 0px 0px 10px 0px;
+}
+
+.startYear {
+  font-size: 15px;
+  margin: 0px;
+}
+
+.startYearValue {
+  font-size: 15px;
+  margin: 0px;
+}
+
+.town {
+  font-size: 15px;
+  margin: 0px;
+}
+
+.townValue {
+  font-size: 15px;
+  margin: 0px;
+}
+
+.descriptionContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
+  background-color: #da22ff;
+  margin: 0px auto 10px auto;
+  width: 90%;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: #da22ff;
+  padding: 10px 30px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #f7f2e8;
+  border-radius: 25px;
+  border: none;
+  margin: 25px 0px;
+}
+
+.button:hover {
+  cursor: pointer;
+}

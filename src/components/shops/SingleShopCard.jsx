@@ -1,34 +1,45 @@
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../store/AuthProvider';
+import SingleShopCardStyle from '../shops/SingleShopCard.module.css';
 
 export default function SingleShopCard(props) {
   const ctx = useAuth();
-  const { id, title, price, userUid, stock } = props.item;
+  const { description, imageUrl, shopName, startYear, town, userUid } =
+    props.item;
   const isMine = userUid === ctx.userUid ? true : false;
   return (
-    <li
-      className={`border-[1px] px-4 py-3 inline-block ${
-        isMine ? 'shadow-md bg-amber-100' : ''
+    <article
+      className={`${SingleShopCardStyle.articleElement} ${
+        isMine ? 'mine' : ''
       }`}
     >
-      <h2 className='font-bold text-2xl'>{title}</h2>
-      <p>{price}eur</p>
-      <p className='text-lg font-semibold'>in stock {stock}</p>
-      <p>userUid: {userUid}</p>
-      <Link
-        className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-slate-600 text-white'
-        to={`/shops/${id}`}
-      >
-        Read more
-      </Link>
-      {isMine && (
-        <button
-          onClick={props.onDelete}
-          className='border border-slate-200 px-2 py-1 mt-3 inline-block bg-red-600 text-white'
-        >
-          delete
-        </button>
-      )}
-    </li>
+      <img
+        className={SingleShopCardStyle.shopImage}
+        src={imageUrl}
+        alt='Shop Image'
+      />
+      <div className={SingleShopCardStyle.scrollDescription}>
+        <h2 className={SingleShopCardStyle.shopName}>{shopName}</h2>
+        <div className={SingleShopCardStyle.descriptionContainer}>
+          <p className={SingleShopCardStyle.startYear}>
+            <b>Start Year</b>
+          </p>
+          <p className={SingleShopCardStyle.startYearValue}>{startYear}</p>
+        </div>
+        <div className={SingleShopCardStyle.descriptionContainer}>
+          <p className={SingleShopCardStyle.town}>
+            <b>Town</b>
+          </p>
+          <p className={SingleShopCardStyle.townValue}>{town}</p>
+        </div>
+        {isMine && (
+          <button
+            className={SingleShopCardStyle.button}
+            onClick={props.onDelete}
+          >
+            Delete
+          </button>
+        )}
+      </div>
+    </article>
   );
 }

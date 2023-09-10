@@ -2,7 +2,13 @@
 
 body {
   width: 75%;
-  background-color: #999999;
+  background-color: #000000;
   margin: 0px auto;
   font-family: 'Poppins';
+}
+
+.container {
+  min-height: 70vh;
+  margin: auto;
+  text-align: center;
 }

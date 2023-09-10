@@ -8,7 +8,6 @@ import AddShop from './components/addShop/AddShop';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Shops from './components/shops/Shops';
-import SingleShopPage from './components/shops/SingleShopPage';
 import Homepage from './components/homepage/Homepage';
 
 function App() {
@@ -21,9 +20,6 @@ function App() {
         <Route path='/' element={<Homepage />} />
         {ctx.isUserLoggedIn && <Route path='/addshop' element={<AddShop />} />}
         {ctx.isUserLoggedIn && <Route path='/shops' element={<Shops />} />}
-        {ctx.isUserLoggedIn && (
-          <Route path='/shops/:shopId' element={<SingleShopPage />} />
-        )}
         {!ctx.isUserLoggedIn && <Route path='/login' element={<Login />} />}
         {!ctx.isUserLoggedIn && (
           <Route path='/register' element={<Register />} />

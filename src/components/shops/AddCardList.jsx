@@ -1,8 +1,9 @@
 import SingleShopCard from './SingleShopCard';
+import AddCardListStyle from '../shops/AddCardList.module.css';
 
 export default function AddCardList(props) {
   return (
-    <ul>
+    <div className={AddCardListStyle.articleElements}>
       {props.list.map((addObj) => (
         <SingleShopCard
           key={addObj.id}
@@ -10,6 +11,6 @@ export default function AddCardList(props) {
           onDelete={() => props.onDelete(addObj.id)}
         />
       ))}
-    </ul>
+    </div>
   );
 }
