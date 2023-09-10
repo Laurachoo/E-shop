@@ -1,3 +1,10 @@
 .title {
   color: #f7f2e8;
+  font-size: 20px;
+}
+
+.googleButton {
+  background-color: #000000;
+  border: none;
+  cursor: pointer;
 }

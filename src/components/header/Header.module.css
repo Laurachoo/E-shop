@@ -51,3 +51,10 @@
   font-weight: 500;
   text-align: center;
 }
+
+.active {
+  color: #da22ff;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}

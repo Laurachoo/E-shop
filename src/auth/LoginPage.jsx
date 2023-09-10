@@ -1,4 +1,4 @@
-import { ErrorMessage, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import LoginPageStyle from '../auth/LoginPage.module.css';
 
 const validationSchema = Yup.object({
-  email: Yup.string().email('Email must be valid').required(),
+  email: Yup.string()
+    .email('Email must be valid')
+    .required('Email is required'),
   password: Yup.string()
-    .min(5, 'Password must be at least 5 characters')
+    .min(6, 'Password must be at least 6 characters')
     .max(50)
-    .required(),
+    .required('Password is required'),
 });
 
 export default function LoginForm() {
@@ -33,8 +35,7 @@ export default function LoginForm() {
         toast.success('Welcome');
         navigate('/shops', { replace: true });
       })
-      .catch((error) => {
-        console.log('aaa');
+      .catch(() => {
         toast.error('Login failed');
       });
   }

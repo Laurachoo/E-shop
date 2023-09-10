@@ -3,42 +3,40 @@ import * as Yup from 'yup';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import toast from 'react-hot-toast';
-import AddShopStyle from '../addShop/AddShop.module.css';
 import { useAuth } from '../../store/AuthProvider';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import AddShopStyle from '../addShop/AddShop.module.css';
 
 function CreateAdd() {
   const ctx = useAuth();
   const navigate = useNavigate();
   const initialValues = {
-    title: 'iPhone 9',
-    description: 'An apple mobile which is nothing like apple',
-    price: 549,
-    stock: 94,
-    brand: 'Apple',
-    category: 'smartphones',
-    mainImgUrl: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-    tags: 'tech, phones',
+    shopName: '',
+    town: '',
+    startYear: '',
+    description: '',
+    imageUrl: '',
   };
 
   const validationSchema = Yup.object({
-    title: Yup.string().min(3).max(255).required('Title is required'),
-    description: Yup.string().required('Description is required'),
-    price: Yup.number()
-      .required('Price is required')
-      .positive('Price must be a positive number'),
-    stock: Yup.number()
-      .required('Stock is required')
-      .integer('Stock must be an integer')
-      .min(0, 'Stock cannot be negative'),
-    brand: Yup.string().required('Brand is required'),
-    category: Yup.string().required('Category is required'),
-    mainImgUrl: Yup.string()
-      .required('Main Image URL is required')
-      .url('Invalid URL'),
-    tags: Yup.string()
-      .required('Tags are required')
-      .min(1, 'At least one tag is required'),
+    shopName: Yup.string()
+      .min(4, 'Shop Name must be at least 4 characters')
+      .required('Shop Name is required'),
+    town: Yup.string()
+      .min(4, 'Town must be at least 4 characters')
+      .required('Town is required'),
+    startYear: Yup.number()
+      .typeError('Please enter a valid number')
+      .required('Start Year is required')
+      .positive()
+      .min(1975, 'Allowed minimum is 1975')
+      .max(2025, 'Allowed maximum is 2025'),
+    description: Yup.string()
+      .min(6, 'Description must be at least 6 characters')
+      .required('Description is required'),
+    imageUrl: Yup.string()
+      .min(5, 'Image URL must be at least 5 characters')
+      .required('Image is required'),
   });
 
   const formik = useFormik({
@@ -69,243 +67,100 @@ function CreateAdd() {
   }
 
   return (
-    <div className='min-h-screen bg-gray-100 flex items-center justify-center'>
-      <div className='bg-white p-8 rounded-lg shadow-md w-96'>
-        <h2 className='text-2xl font-semibold mb-4'>Create Ad</h2>
-        <form onSubmit={formik.handleSubmit}>
-          {/* Title */}
-          <div className='mb-4'>
-            <label
-              htmlFor='title'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Title
-            </label>
-            <input
-              type='text'
-              id='title'
-              name='title'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.title}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.title && formik.errors.title
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.title && formik.errors.title && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.title}
-              </div>
-            )}
-          </div>
-
-          {/* Description */}
-          <div className='mb-4'>
-            <label
-              htmlFor='description'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Description
-            </label>
-            <textarea
-              id='description'
-              name='description'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.description}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.description && formik.errors.description
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.description && formik.errors.description && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.description}
-              </div>
-            )}
-          </div>
-
-          {/* Price */}
-          <div className='mb-4'>
-            <label
-              htmlFor='price'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Price
-            </label>
-            <input
-              type='number'
-              id='price'
-              name='price'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.price}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.price && formik.errors.price
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.price && formik.errors.price && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.price}
-              </div>
-            )}
-          </div>
-
-          {/* Stock */}
-          <div className='mb-4'>
-            <label
-              htmlFor='stock'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Stock
-            </label>
-            <input
-              type='number'
-              id='stock'
-              name='stock'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.stock}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.stock && formik.errors.stock
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.stock && formik.errors.stock && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.stock}
-              </div>
-            )}
-          </div>
-
-          {/* Brand */}
-          <div className='mb-4'>
-            <label
-              htmlFor='brand'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Brand
-            </label>
-            <input
-              type='text'
-              id='brand'
-              name='brand'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.brand}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.brand && formik.errors.brand
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.brand && formik.errors.brand && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.brand}
-              </div>
-            )}
-          </div>
-
-          {/* Category */}
-          <div className='mb-4'>
-            <label
-              htmlFor='category'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Category
-            </label>
-            <input
-              type='text'
-              id='category'
-              name='category'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.category}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.category && formik.errors.category
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.category && formik.errors.category && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.category}
-              </div>
-            )}
-          </div>
-
-          {/* Main Image URL */}
-          <div className='mb-4'>
-            <label
-              htmlFor='mainImgUrl'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Main Image URL
-            </label>
-            <input
-              type='text'
-              id='mainImgUrl'
-              name='mainImgUrl'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.mainImgUrl}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.mainImgUrl && formik.errors.mainImgUrl
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.mainImgUrl && formik.errors.mainImgUrl && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.mainImgUrl}
-              </div>
-            )}
-          </div>
-
-          {/* Tags */}
-          <div className='mb-4'>
-            <label
-              htmlFor='tags'
-              className='block text-sm font-medium text-gray-700'
-            >
-              Tags
-            </label>
-            <input
-              type='text'
-              id='tags'
-              name='tags'
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.tags}
-              className={`mt-1 p-2 w-full border rounded-md ${
-                formik.touched.tags && formik.errors.tags
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-gray-300 focus:border-blue-500'
-              }`}
-            />
-            {formik.touched.tags && formik.errors.tags && (
-              <div className='text-red-500 text-sm mt-1'>
-                {formik.errors.tags}
-              </div>
-            )}
-          </div>
-
-          <div className='mt-4'>
-            <button
-              type='submit'
-              className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300'
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+    <div className={AddShopStyle.container}>
+      <h2 className={AddShopStyle.heading}>Create a new shop</h2>
+      <form onSubmit={formik.handleSubmit}>
+        <div className={AddShopStyle.labelAndInput}>
+          <label className={AddShopStyle.label} htmlFor='shopName'>
+            Shop Name
+          </label>
+          <input
+            className={AddShopStyle.input}
+            type='text'
+            id='shopName'
+            name='shopName'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.shopName}
+          />
+          {formik.touched.shopName && formik.errors.shopName && (
+            <div className={AddShopStyle.error}>{formik.errors.shopName}</div>
+          )}
+        </div>
+        <div className={AddShopStyle.labelAndInput}>
+          <label className={AddShopStyle.label} htmlFor='town'>
+            Town
+          </label>
+          <input
+            className={AddShopStyle.input}
+            id='town'
+            name='town'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.town}
+          />
+          {formik.touched.town && formik.errors.town && (
+            <div className={AddShopStyle.error}>{formik.errors.town}</div>
+          )}
+        </div>
+        <div className={AddShopStyle.labelAndInput}>
+          <label className={AddShopStyle.label} htmlFor='startYear'>
+            Start Year
+          </label>
+          <input
+            className={AddShopStyle.input}
+            id='startYear'
+            name='startYear'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.startYear}
+          />
+          {formik.touched.startYear && formik.errors.startYear && (
+            <div className={AddShopStyle.error}>{formik.errors.startYear}</div>
+          )}
+        </div>
+        <div className={AddShopStyle.labelAndInput}>
+          <label className={AddShopStyle.label} htmlFor='description'>
+            Description
+          </label>
+          <textarea
+            className={AddShopStyle.inputSpecial}
+            type='string'
+            id='description'
+            name='description'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.description}
+          />
+          {formik.touched.description && formik.errors.description && (
+            <div className={AddShopStyle.error}>
+              {formik.errors.description}
+            </div>
+          )}
+        </div>
+        <div className={AddShopStyle.labelAndInput}>
+          <label className={AddShopStyle.label} htmlFor='imageUrl'>
+            Image
+          </label>
+          <input
+            className={AddShopStyle.input}
+            type='text'
+            id='imageUrl'
+            name='imageUrl'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.imageUrl}
+          />
+          {formik.touched.imageUrl && formik.errors.imageUrl && (
+            <div className={AddShopStyle.error}>{formik.errors.imageUrl}</div>
+          )}
+        </div>
+        <div>
+          <button className={AddShopStyle.button} type='submit'>
+            Create
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

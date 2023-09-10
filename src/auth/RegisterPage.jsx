@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import RegisterStyle from '../auth/Register.module.css';
+import RegisterPageStyle from '../auth/RegisterPage.module.css';
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -13,8 +13,13 @@ export default function RegisterForm() {
       password: '',
     },
     validationSchema: Yup.object({
-      email: Yup.string().email().required(),
-      password: Yup.string().min(5).max(50).required(),
+      email: Yup.string()
+        .email('Email must be valid')
+        .required('Email is required'),
+      password: Yup.string()
+        .min(6, 'Password must be at least 6 characters')
+        .max(50)
+        .required('Password is required'),
     }),
     onSubmit: (values) => {
       registerWithFire(values.email, values.password);
@@ -38,7 +43,7 @@ export default function RegisterForm() {
       <form onSubmit={formik.handleSubmit}>
         <div>
           <input
-            className={RegisterStyle.input}
+            className={RegisterPageStyle.inputOne}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
@@ -47,12 +52,12 @@ export default function RegisterForm() {
             placeholder='Email'
           />
           {formik.errors.email && formik.touched.email && (
-            <p>{formik.errors.email}</p>
+            <p className={RegisterPageStyle.error}>{formik.errors.email}</p>
           )}
         </div>
         <div>
           <input
-            className={RegisterStyle.input}
+            className={RegisterPageStyle.inputTwo}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
@@ -61,10 +66,10 @@ export default function RegisterForm() {
             placeholder='Password'
           />
           {formik.errors.password && formik.touched.password && (
-            <p>{formik.errors.password}</p>
+            <p className={RegisterPageStyle.error}>{formik.errors.password}</p>
           )}
         </div>
-        <button className={RegisterStyle.registerButton} type='submit'>
+        <button className={RegisterPageStyle.registerButton} type='submit'>
           Register
         </button>
       </form>

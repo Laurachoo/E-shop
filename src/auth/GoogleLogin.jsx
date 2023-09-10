@@ -11,7 +11,7 @@ export default function GoogleLogin() {
     const auth = getAuth();
 
     signInWithPopup(auth, googleProvider)
-      .then((result) => {
+      .then(() => {
         toast.success('Welcome');
         navigate('/shops', { replace: true });
       })
@@ -27,7 +27,10 @@ export default function GoogleLogin() {
   return (
     <>
       <h3 className={GoogleLoginStyle.title}>Login or register with Google</h3>
-      <button onClick={authWithGoogle}>
+      <button
+        className={GoogleLoginStyle.googleButton}
+        onClick={authWithGoogle}
+      >
         <FcGoogle size={35} />
       </button>
     </>

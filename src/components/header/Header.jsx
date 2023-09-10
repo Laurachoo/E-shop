@@ -9,7 +9,13 @@ function OneLink(props) {
   return (
     <NavLink
       onClick={props.onClick}
-      className={HeaderStyle.headerLink}
+      className={({ isActive, isPending }) =>
+        isPending
+          ? HeaderStyle.pending
+          : isActive
+          ? HeaderStyle.active
+          : HeaderStyle.headerLink
+      }
       to={props.to}
     >
       {props.title}

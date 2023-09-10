@@ -24,3 +24,16 @@
   margin: 0px;
   padding-bottom: 250px;
 }
+
+.sectionOne {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sectionOneParagraph {
+  color: #f7f2e8;
+}
+
+.loopkitImg {
+  width: 25%;
+}
