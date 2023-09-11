@@ -1,5 +1,3 @@
-import GoogleLogin from '../../auth/GoogleLogin';
-import LoginForm from '../../auth/LoginPage';
 import HomepageStyle from '../homepage/Homepage.module.css';
 
 function Homepage() {

@@ -33,6 +33,7 @@ function CreateAdd() {
       .max(2025, 'Allowed maximum is 2025'),
     description: Yup.string()
       .min(6, 'Description must be at least 6 characters')
+      .max(100, 'Description must be less than 100 characters')
       .required('Description is required'),
     imageUrl: Yup.string()
       .min(5, 'Image URL must be at least 5 characters')

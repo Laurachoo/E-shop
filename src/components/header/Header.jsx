@@ -3,7 +3,9 @@ import { useAuth } from '../../store/AuthProvider';
 import { getAuth, signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
 import { FaBity } from 'react-icons/fa';
+import { FaStream } from 'react-icons/fa';
 import HeaderStyle from '../header/Header.module.css';
+import Sidebar from '../../components/header/Sidebar';
 
 function OneLink(props) {
   return (
@@ -37,8 +39,10 @@ function logoutFire() {
 function Header() {
   const ctx = useAuth();
   return (
-    <div>
-      <nav className={HeaderStyle.headerNavBar}>
+    <div id='outer-container'>
+      <Sidebar />
+
+      <nav id='page-wrap' className={HeaderStyle.headerNavBar}>
         <Link className={HeaderStyle.headerTitleLink} to={'/'}>
           <div className={HeaderStyle.headerIconAndTitle}>
             <span className={HeaderStyle.headerIcon}>

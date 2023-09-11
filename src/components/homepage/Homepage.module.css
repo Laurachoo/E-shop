@@ -8,7 +8,7 @@
   font-size: 25px;
   color: #f7f2e8;
   margin: 0px;
-  padding-top: 50px;
+  padding-top: 175px;
 }
 
 .heroTitleEnd {
@@ -42,4 +42,10 @@
   min-height: calc(70vh + 22.5px);
   margin: auto;
   text-align: center;
+}
+
+@media only screen and (max-width: 650px) {
+  .heroTitleEnd {
+    font-size: 60px;
+  }
 }

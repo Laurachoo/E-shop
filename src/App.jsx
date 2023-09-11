@@ -9,6 +9,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Shops from './components/shops/Shops';
 import Homepage from './components/homepage/Homepage';
+import Sidebar from './components/header/Sidebar';
 
 function App() {
   const ctx = useAuth();
@@ -27,13 +28,16 @@ function App() {
         <Route
           path='*'
           element={
-            <div>
-              <h1>404</h1>
-              <p>Page not found</p>
+            <div className='errorContainer'>
+              <div className='miniErrorContainer'>
+                <h1 className='error404'>404</h1>
+                <p className='pageNotFound'>Page not found</p>
+              </div>
             </div>
           }
         />
       </Routes>
+
       <Footer />
     </div>
   );

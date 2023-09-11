@@ -48,7 +48,7 @@ export default function Shops() {
   }
 
   return (
-    <div>
+    <div className={ShopsStyle.container}>
       <h1 className={ShopsStyle.browseShops}>Browse all the shops</h1>
       {addsArr.length != 0 ? (
         <AddCardList list={addsArr} onDelete={deleteFire} />

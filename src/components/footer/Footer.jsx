@@ -13,7 +13,7 @@ function Footer() {
             <FaMailBulk />
           </span>
           <span className={FooterStyle.containerDescription}>
-            support@soundspectrum.com
+            support@sp.com
           </span>
         </div>
         <div className={FooterStyle.footerContact}>
@@ -34,16 +34,18 @@ function Footer() {
         </div>
       </div>
       <div className={FooterStyle.informationContainer}>
-        <span className={FooterStyle.containerDescription}>
+        <span className={FooterStyle.containerDescriptionSpecial}>
           <b>© All rights reserved</b>
         </span>
       </div>
       <div className={FooterStyle.locationContainer}>
         <span className={FooterStyle.containerTitle}>Location</span>
-        <span className={FooterStyle.containerDescription}>
+        <span className={FooterStyle.containerDescriptionEdit}>
           Sound Spectrum Inc.
           <br />
-          2347 Hamilton Avenue San Jose,
+          2347 Hamilton Avenue
+          <br />
+          San Jose,
           <br />
           California 95125
         </span>

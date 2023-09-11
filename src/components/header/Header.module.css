@@ -58,3 +58,33 @@
   font-weight: 500;
   text-decoration: none;
 }
+
+.burgerMenu {
+  font-size: 20px;
+  color: #f7f2e8;
+  display: none;
+}
+
+@media only screen and (max-width: 1150px) {
+  .headerTitle {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 875px) {
+  .burgerMenu {
+    display: block;
+  }
+  .headerLinks {
+    display: none;
+  }
+  .headerEmail {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .headerEmail {
+    font-size: 10px;
+  }
+}

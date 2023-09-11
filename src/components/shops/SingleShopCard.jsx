@@ -12,11 +12,13 @@ export default function SingleShopCard(props) {
         isMine ? 'mine' : ''
       }`}
     >
-      <img
-        className={SingleShopCardStyle.shopImage}
-        src={imageUrl}
-        alt='Shop Image'
-      />
+      <div className={SingleShopCardStyle.articleHead}>
+        <img
+          className={SingleShopCardStyle.shopImage}
+          src={imageUrl}
+          alt='Shop Image'
+        />
+      </div>
       <div className={SingleShopCardStyle.scrollDescription}>
         <h2 className={SingleShopCardStyle.shopName}>{shopName}</h2>
         <div className={SingleShopCardStyle.descriptionContainer}>
@@ -30,6 +32,12 @@ export default function SingleShopCard(props) {
             <b>Town</b>
           </p>
           <p className={SingleShopCardStyle.townValue}>{town}</p>
+        </div>
+        <div className={SingleShopCardStyle.descriptionContainerSpecial}>
+          <p className={SingleShopCardStyle.description}>
+            <b>Description</b>
+          </p>
+          <p className={SingleShopCardStyle.descriptionValue}>{description}</p>
         </div>
         {isMine && (
           <button
