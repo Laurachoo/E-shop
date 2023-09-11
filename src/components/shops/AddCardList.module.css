@@ -3,7 +3,7 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1175px) {
   .articleElements {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
